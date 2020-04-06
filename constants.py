@@ -10,7 +10,7 @@ COGNITIVE_WEIGHT = 1
 SOCIAL_WEIGHT = 1
 
 # lowers the ability of exploration by reducing the velocity to a given limit value
-MAX_VELOCITY_ALLOWED = 100
+MAX_VELOCITY_ALLOWED = 300
 
 POP_SIZE = 250
 GENERATIONS_NO = 1000

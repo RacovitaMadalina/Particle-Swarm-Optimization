@@ -14,8 +14,8 @@ class Swarm:
             if eval_best_known_position_for_current_particle < self.global_minimum_found:
                 self.update_best_position_and_corresponding_eval(particle.best_known_position)
 
-    def __init__(self, fitness, precision):
-        self.fitness = fitness
+    def __init__(self, fitness_function, precision):
+        self.fitness = fitness_function
         self.precision = precision
         self.best_known_position = None
         self.global_minimum_found = None
