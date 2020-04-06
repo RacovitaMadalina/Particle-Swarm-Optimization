@@ -10,7 +10,7 @@ def quadric_function(x):
 def de_jong(x):
     de_jong = 0
     for i in range(len(x)):
-        de_jong += x[i] ** 2
+        de_jong += (x[i] ** 2)
     return de_jong
 
 
@@ -21,21 +21,21 @@ def six_hump_camel_back(x):
 def rosenbrock(x):
     rosenbrock_value = 0
     for i in range(len(x) - 1):
-        rosenbrock_value = rosenbrock_value + 100 * ((x[i + 1] - x[i] ** 2) ** 2) + (1 - x[i]) ** 2
+        rosenbrock_value += (100 * ((x[i + 1] - x[i] ** 2) ** 2) + (1 - x[i]) ** 2)
     return rosenbrock_value
 
 
 def rastrigin(x):
     rastrigin_value = 10 * DIMENSIONS_OF_THE_FUNCTION
     for i in range(len(x)):
-        rastrigin_value = rastrigin_value + x[i] ** 2 - 10 * math.cos(2 * math.pi * x[i])
+        rastrigin_value += (x[i] ** 2 - 10 * math.cos(2 * math.pi * x[i]))
     return rastrigin_value
 
 
 def griewangk(x):
     sum = 0
     for i in range(len(x)):
-        sum = sum + (x[i] ** 2) / 4000
+        sum += ((x[i] ** 2) / 4000)
     product = 1
     for i in range(len(x)):
         product = product * math.cos(x[i] / math.sqrt(i + 1))
