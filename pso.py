@@ -42,8 +42,7 @@ class PSO:
             self.swarm.update_swarm_by_considered_particle(current_particle)
 
         current_generation_index = 0
-        while current_generation_index <= self.generations_no:
-            current_generation_index += 1
+        while current_generation_index < self.generations_no:
 
             for i in range(self.pop_size):
                 current_particle = self.population[i]
@@ -61,8 +60,13 @@ class PSO:
                     np.array(current_particle.position))
 
                 current_particle.velocity = list(inertia_update_ratio + cognitive_update_ratio + social_update_ratio)
-                current_particle.position = list(
-                    np.array(current_particle.position) + np.array(current_particle.velocity))
+                current_particle.update_velocity_in_respect_to_max_velocity_allowed()
+
+                current_particle.position = list(np.array(current_particle.position) +
+                                                 np.array(current_particle.velocity))
+
+                # update fitness for current particle
+                current_particle.evaluation = current_particle.evaluate_position(current_particle.position)
 
                 # update individual and collective improvements
 
@@ -73,5 +77,6 @@ class PSO:
                 # update swarm's best position and global minimum for the function
                 self.swarm.update_swarm_by_considered_particle(self.population[i])
 
+            current_generation_index += 1
             print("Generation = " + str(current_generation_index) +
                   ' __________ Swarm minimum = ' + str(self.swarm.global_minimum_found) + '\n')

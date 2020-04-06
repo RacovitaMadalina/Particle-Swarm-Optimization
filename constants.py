@@ -1,7 +1,7 @@
 PRECISION = 9
 
 # establish the balance between exploration and exploitation
-INERTIA_WEIGHT = 0.5
+INERTIA_WEIGHT = 0.8
 
 # tendency of duplicating past self actions which were proven to be successful
 COGNITIVE_WEIGHT = 1

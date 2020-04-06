@@ -1,10 +1,7 @@
 class Swarm:
-    def update_global_minimum(self):
-        self.global_minimum_found = round(self.fitness(self.best_known_position), self.precision)
-
     def update_best_position_and_corresponding_eval(self, position):
         self.best_known_position = position
-        self.update_global_minimum()
+        self.global_minimum_found = round(self.fitness(self.best_known_position), self.precision)
 
     def update_swarm_by_considered_particle(self, particle):
         if self.best_known_position is None:
