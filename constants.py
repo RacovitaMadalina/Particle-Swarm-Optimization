@@ -12,8 +12,8 @@ SOCIAL_WEIGHT = 1
 # lowers the ability of exploration by reducing the velocity to a given limit value
 MAX_VELOCITY_ALLOWED = 300
 
-POP_SIZE = 250
-GENERATIONS_NO = 1000
+POP_SIZE = 100
+GENERATIONS_NO = 100
 DIMENSIONS_OF_THE_FUNCTION = 30
 
 INTERVALS_OF_DEFINITION = {

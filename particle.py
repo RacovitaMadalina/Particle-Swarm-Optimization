@@ -5,18 +5,18 @@ from constants import *
 
 class Particle:
     def initialise_position(self):
-        return np.random.uniform(self.lower_definition_limit, self.upper_definition_limit, size=self.dimension_no)
+        return np.random.uniform(self.lower_definition_limit, self.upper_definition_limit, size = self.dimension_no)
 
     def initialise_velocity(self):
         diff = abs(self.upper_definition_limit - self.lower_definition_limit)
-        return np.random.uniform(-diff, diff, size=self.dimension_no)
+        return np.random.uniform(-diff, diff, size = self.dimension_no)
 
     def update_velocity_in_respect_to_max_velocity_allowed(self):
         for i in range(len(self.velocity)):
             if self.velocity[i] > self.max_velocity_allowed:
                 self.velocity[i] = self.max_velocity_allowed
-            if self.velocity[i] < (-1) * self.max_velocity_allowed:
-                self.velocity[i] = (-1) * self.max_velocity_allowed
+            if self.velocity[i] < -self.max_velocity_allowed:
+                self.velocity[i] = -self.max_velocity_allowed
 
     def evaluate_position(self, position):
         return round(self.fitness_function(position), self.precision)

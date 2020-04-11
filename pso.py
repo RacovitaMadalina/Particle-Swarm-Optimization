@@ -1,4 +1,3 @@
-import random
 import numpy as np
 
 from constants import *
@@ -44,22 +43,17 @@ class PSO:
             current_particle = self.population[i]
 
             # velocity update in respect with inertia ratio, individual performance and global swarm improvement
-            random_cognitive = random.random()
-            random_social = random.random()
+            random_cognitive = np.random.random(size = len(current_particle.position))
+            random_social = np.random.random(size = len(current_particle.position))
 
-            inertia_update_ratio = self.inertia * np.array(current_particle.velocity)
-            cognitive_update_ratio = self.cognitive * random_cognitive * np.array(
-                np.array(current_particle.best_known_position) -
-                np.array(current_particle.position))
-            social_update_ratio = self.social * random_social * np.array(
-                np.array(self.swarm.best_known_position) -
-                np.array(current_particle.position))
+            inertia_update_ratio = self.inertia * current_particle.velocity
+            cognitive_update_ratio = self.cognitive * random_cognitive * (current_particle.best_known_position - current_particle.position)
+            social_update_ratio = self.social * random_social * (self.swarm.best_known_position - current_particle.position)
 
-            current_particle.velocity = list(inertia_update_ratio + cognitive_update_ratio + social_update_ratio)
+            current_particle.velocity = inertia_update_ratio + cognitive_update_ratio + social_update_ratio
             current_particle.update_velocity_in_respect_to_max_velocity_allowed()
 
-            current_particle.position = list(np.array(current_particle.position) +
-                                             np.array(current_particle.velocity))
+            current_particle.position = current_particle.position + current_particle.velocity
 
             # update fitness for current particle
             current_particle.evaluation = current_particle.evaluate_position(current_particle.position)

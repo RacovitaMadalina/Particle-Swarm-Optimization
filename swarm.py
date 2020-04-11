@@ -19,3 +19,9 @@ class Swarm:
         self.precision = precision
         self.best_known_position = None
         self.global_minimum_found = None
+
+    def copy(self):
+        new_object = Swarm(self.fitness, self.precision)
+        new_object.best_known_position = self.best_known_position
+        new_object.global_minimum_found = self.global_minimum_found
+        return new_object

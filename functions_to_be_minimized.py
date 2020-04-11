@@ -8,10 +8,7 @@ def quadric_function(x):
 
 
 def de_jong(x):
-    de_jong = 0
-    for i in range(len(x)):
-        de_jong += (x[i] ** 2)
-    return de_jong
+    return sum(x * x)
 
 
 def six_hump_camel_back(x):

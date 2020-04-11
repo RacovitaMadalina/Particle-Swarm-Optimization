@@ -13,6 +13,6 @@ if __name__ == '__main__':
     # visualiser.start_pso_visualizer()
 
     # 15 experiments on a fixed population + statistics
-    experiment = Experiment(rastrigin)
+    experiment = Experiment(rosenbrock)
     max_value, min_value, mean_value = experiment.run_experiment()
     print('Min = ', min_value, " Max = ", max_value, " Mean = ", mean_value)

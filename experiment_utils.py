@@ -1,4 +1,5 @@
 import numpy as np
+from copy import deepcopy
 
 from pso import *
 
@@ -14,13 +15,11 @@ class Experiment:
         self.fixed_population, self.initial_swarm = self.establish_starting_population()
 
     def run_pso_for_given_population(self, pso, experiment_no):
-        pso.population = self.fixed_population
-        pso.swarm = self.initial_swarm
+        pso.population = deepcopy(self.fixed_population)
+        pso.swarm = self.initial_swarm.copy()
 
-        current_generation_index = 0
-        while current_generation_index < pso.generations_no:
+        for current_generation_index in range(1, pso.generations_no + 1):
             pso.run_one_iteration_pso_algorithm()
-            current_generation_index += 1
             print("Experiment = " + str(experiment_no) +
                   ' __________ Generation = ' + str(current_generation_index) +
                   ' __________ Swarm minimum = ' + str(pso.swarm.global_minimum_found) + '\n')
