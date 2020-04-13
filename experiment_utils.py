@@ -20,7 +20,7 @@ class Experiment:
 
         for current_generation_index in range(1, pso.generations_no + 1):
             pso.run_one_iteration_pso_algorithm()
-            print("Experiment = " + str(experiment_no) +
+            print("Dim " + str(pso.dimensions_no) + " Experiment = " + str(experiment_no) +
                   ' __________ Generation = ' + str(current_generation_index) +
                   ' __________ Swarm minimum = ' + str(pso.swarm.global_minimum_found) + '\n')
 

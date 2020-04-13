@@ -54,6 +54,11 @@ class PSO:
             current_particle.update_velocity_in_respect_to_max_velocity_allowed()
 
             current_particle.position = current_particle.position + current_particle.velocity
+            current_particle.update_position_in_respect_to_limits()
+
+            #for i in range(len(current_particle.position)):
+            #    assert current_particle.lower_definition_limit <= current_particle.position[i]
+            #    assert current_particle.position[i] <= current_particle.upper_definition_limit
 
             # update fitness for current particle
             current_particle.evaluation = current_particle.evaluate_position(current_particle.position)

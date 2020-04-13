@@ -18,6 +18,13 @@ class Particle:
             if self.velocity[i] < -self.max_velocity_allowed:
                 self.velocity[i] = -self.max_velocity_allowed
 
+    def update_position_in_respect_to_limits(self):
+        for i in range(len(self.position)):
+            if self.position[i] > self.upper_definition_limit:
+                self.position[i] = self.upper_definition_limit
+            if self.position[i] < self.lower_definition_limit:
+                self.position[i] = self.lower_definition_limit
+
     def evaluate_position(self, position):
         return round(self.fitness_function(position), self.precision)
 
