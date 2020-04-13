@@ -22,11 +22,11 @@ class Experiment:
             #print("Dim " + str(pso.dimensions_no) + " Experiment = " + str(experiment_no) +
             #      ' __________ Generation = ' + str(current_generation_index) +
             #      ' __________ Swarm minimum = ' + str(pso.swarm.global_minimum_found) + '\n')
-            if results != None and current_generation_index % 10 == 0:
+            if results != None and current_generation_index % 1 == 0:
                 val = pso.swarm.global_minimum_found
                 results.add(self.fitness.__name__, experiment_no, self.constants, val, val, val, current_generation_index)
 
-                if current_generation_index > 10:
+                if current_generation_index > 1:
                     print("\033[F\033[K", end = '')
                 print("Generation index", current_generation_index)
 

@@ -24,7 +24,7 @@ if __name__ == '__main__':
     GET_WEIGHTS = False
 
     results = Results()
-    #results.load(results_file)
+    results.load(results_file)
 
     if GET_WEIGHTS == True:
         # Get best combination of weights
@@ -57,7 +57,7 @@ if __name__ == '__main__':
             print(inertia_weight, cognitive_weight, social_weight)
             # 30 experiments on a fixed population + statistics
             experiment = Experiment(six_hump_camel_back, constants)
-            max_value, min_value, mean_value = experiment.run_experiment(1, results)
+            max_value, min_value, mean_value = experiment.run_experiment(30, results)
             print('Min = ', min_value, " Max = ", max_value, " Mean = ", mean_value)
 
     results.save(results_file)
