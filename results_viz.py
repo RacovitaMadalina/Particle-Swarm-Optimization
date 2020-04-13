@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 import pandas as pd
 import plotly.express as px
+import plotly
 
 from results import Results
 
@@ -76,11 +77,10 @@ best_value_depending_on_generation(griewangk_res.df[griewangk_res.df["Cognitive"
 best_value_depending_on_generation(griewangk_res.df[griewangk_res.df["Cognitive"] == 1],
                                    "Evolution of best values for Griewangk function", 10,
                                    "images/griew cognitive 1, pop_size 250.png")
-exit(0)
+# exit(0)
 
 fig = plt.figure(figsize=(15, 15))
-
-fig = px.scatter_3d(results.df[results.df["Mean"] < 30],
+fig = px.scatter_3d(rastrigin_res.df[rastrigin_res.df["Mean"] < 30],
                     x='Inertia',
                     y='Cognitive',
                     z='Social',
@@ -89,4 +89,5 @@ fig = px.scatter_3d(results.df[results.df["Mean"] < 30],
                     size='Mean',
                     title='The effect of different configurations for inertia /'
                           ' cognitive / social parameters over the PSO results.')
-fig.show()
+plotly.offline.plot(fig, filename='./images/Rastrigin_diff_weights.html', auto_open=False)
+# fig.show()
