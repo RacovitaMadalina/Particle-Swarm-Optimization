@@ -1,5 +1,5 @@
 
-results_file = "results.pickle"
+results_file = "results_without_outliers.pickle"
 
 class Constants():
 	def __init__(self):

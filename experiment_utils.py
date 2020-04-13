@@ -8,16 +8,14 @@ class Experiment:
     def establish_starting_population(self):
         pso = PSO(self.fitness, self.constants)
         pso.pop_initialisation()
-        return pso.population, pso.swarm
+        return pso
 
     def __init__(self, function_to_be_minimized, constants):
         self.fitness = function_to_be_minimized
         self.constants = constants
-        self.fixed_population, self.initial_swarm = self.establish_starting_population()
 
-    def run_pso_for_given_population(self, pso, experiment_no):
-        pso.population = deepcopy(self.fixed_population)
-        pso.swarm = self.initial_swarm.copy()
+    def run_pso(self, experiment_no):
+        pso = self.establish_starting_population()
 
         for current_generation_index in range(1, pso.generations_no + 1):
             pso.run_one_iteration_pso_algorithm()
@@ -37,8 +35,7 @@ class Experiment:
         mins_found_during_experiment = []
 
         for experiment_no in range(30):
-            pso = PSO(self.fitness, self.constants)
-            current_min = self.run_pso_for_given_population(pso, experiment_no)
+            current_min = self.run_pso(experiment_no)
             mins_found_during_experiment.append(current_min)
 
         print("\033[F\033[K", end = '')

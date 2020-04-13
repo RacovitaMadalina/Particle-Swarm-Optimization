@@ -14,12 +14,12 @@ print(results.df)
 
 fig = plt.figure(figsize=(15, 15))
 
-fig = px.scatter_3d(results.df,
+fig = px.scatter_3d(results.df[results.df["Mean"] < 30],
                     x='Inertia',
                     y='Cognitive',
                     z='Social',
                     color='Mean',
                     opacity=0.9,
                     size='Mean',
-                    title='The effect of different configurations for inertial / cognitive / social parameters over the PSO results.')
+                    title='The effect of different configurations for inertia / cognitive / social parameters over the PSO results.')
 fig.show()

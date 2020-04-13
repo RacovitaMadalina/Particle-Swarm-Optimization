@@ -17,7 +17,7 @@ if __name__ == '__main__':
     constants = Constants()
     results = Results()
 
-    inertia_weights = [0.5, 1, 2.05, 4]
+    inertia_weights = [0.5, 0.8, 1]
     cognitive_weights = [0.5, 1, 2.05, 4]
     social_weights = [0.5, 1, 2.05, 4]
 
