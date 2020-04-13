@@ -1,7 +1,9 @@
+import matplotlib.pyplot as plt
 import pandas as pd
+import plotly.express as px
 
-from results import Results
 from constants import results_file
+from results import Results
 
 results = Results()
 results.load(results_file)
@@ -9,3 +11,15 @@ results.load(results_file)
 pd.set_option("display.max_rows", len(results.df))
 
 print(results.df)
+
+fig = plt.figure(figsize=(15, 15))
+
+fig = px.scatter_3d(results.df,
+                    x='Inertia',
+                    y='Cognitive',
+                    z='Social',
+                    color='Mean',
+                    opacity=0.9,
+                    size='Mean',
+                    title='The effect of different configurations for inertial / cognitive / social parameters over the PSO results.')
+fig.show()
