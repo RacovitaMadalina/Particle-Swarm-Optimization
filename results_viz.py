@@ -10,6 +10,7 @@ results.load(results_file)
 
 pd.set_option("display.max_rows", len(results.df))
 
+# results.df.sort_values("Mean", inplace = True)
 print(results.df[results.df["Function"] == "griewangk"])
 exit(0)
 

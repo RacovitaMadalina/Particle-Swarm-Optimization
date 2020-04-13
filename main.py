@@ -21,10 +21,10 @@ if __name__ == '__main__':
     # print('Min = ', min_value, " Max = ", max_value, " Mean = ", mean_value)
     # exit(0)
 
-    GET_WEIGHTS = True
+    GET_WEIGHTS = False
 
     results = Results()
-    results.load(results_file)
+    #results.load(results_file)
 
     if GET_WEIGHTS == True:
         # Get best combination of weights
@@ -45,9 +45,9 @@ if __name__ == '__main__':
                     max_value, min_value, mean_value = experiment.run_experiment(30)
                     print('Min = ', min_value, " Max = ", max_value, " Mean = ", mean_value)
 
-                    results.add("griewangk", constants, min_value, max_value, mean_value)
+                    results.add("griewangk", -1, constants, min_value, max_value, mean_value)
     else:
-        weight_combinations = [(0.5, 0.50, 4.00), (0.5, 4.00, 1.00), (0.5, 1.00, 4.00), (0.8, 1.00, 1.00)]
+        weight_combinations = [(0.5, 0.50, 4.00), (0.5, 1.00, 4.00)]
         
         for (inertia_weight, cognitive_weight, social_weight) in weight_combinations:
             constants.INERTIA_WEIGHT = inertia_weight
@@ -56,10 +56,8 @@ if __name__ == '__main__':
 
             print(inertia_weight, cognitive_weight, social_weight)
             # 30 experiments on a fixed population + statistics
-            experiment = Experiment(rastrigin, constants)
+            experiment = Experiment(six_hump_camel_back, constants)
             max_value, min_value, mean_value = experiment.run_experiment(1, results)
             print('Min = ', min_value, " Max = ", max_value, " Mean = ", mean_value)
-
-            #results.add("rastrigin", constants, min_value, max_value, mean_value)
 
     results.save(results_file)

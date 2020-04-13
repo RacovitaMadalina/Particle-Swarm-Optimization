@@ -1,5 +1,5 @@
 
-results_file = "results/results.pickle"
+results_file = "results/griewangk.pickle"
 
 class Constants():
 	def __init__(self):
@@ -17,8 +17,8 @@ class Constants():
 		# lowers the ability of exploration by reducing the velocity to a given limit value
 		self.MAX_VELOCITY_ALLOWED = 12
 
-		self.POP_SIZE = 100
-		self.GENERATIONS_NO = 200
+		self.POP_SIZE = 250
+		self.GENERATIONS_NO = 700
 		self.DIMENSIONS_OF_THE_FUNCTION = 30
 
 		self.INTERVALS_OF_DEFINITION = {
