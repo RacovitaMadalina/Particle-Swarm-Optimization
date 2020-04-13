@@ -1,26 +1,31 @@
-PRECISION = 9
 
-# establish the balance between exploration and exploitation
-INERTIA_WEIGHT = 0.8
+results_file = "results.pickle"
 
-# tendency of duplicating past self actions which were proven to be successful
-COGNITIVE_WEIGHT = 1
+class Constants():
+	def __init__(self):
+		self.PRECISION = 9
 
-# tendency of following collective success (i.e. success of other individuals)
-SOCIAL_WEIGHT = 1
+		# establish the balance between exploration and exploitation
+		self.INERTIA_WEIGHT = 0.9
 
-# lowers the ability of exploration by reducing the velocity to a given limit value
-MAX_VELOCITY_ALLOWED = 300
+		# tendency of duplicating past self actions which were proven to be successful
+		self.COGNITIVE_WEIGHT = 4
 
-POP_SIZE = 100
-GENERATIONS_NO = 1000
-DIMENSIONS_OF_THE_FUNCTION = 10
+		# tendency of following collective success (i.e. success of other individuals)
+		self.SOCIAL_WEIGHT = 2.05
 
-INTERVALS_OF_DEFINITION = {
-    'quadric_function': [-10, 10],
-    'de_jong': [-5.12, 5.12],
-    'six_hump_camel_back': [-3, 3],
-    'rosenbrock': [-2.048, 2.048],
-    'rastrigin': [-5.12, 5.12],
-    'griewangk': [-600, 600]
-}
+		# lowers the ability of exploration by reducing the velocity to a given limit value
+		self.MAX_VELOCITY_ALLOWED = 0.5
+
+		self.POP_SIZE = 100
+		self.GENERATIONS_NO = 200
+		self.DIMENSIONS_OF_THE_FUNCTION = 30
+
+		self.INTERVALS_OF_DEFINITION = {
+		    'quadric_function': [-10, 10],
+		    'de_jong': [-5.12, 5.12],
+		    'six_hump_camel_back': [-3, 3],
+		    'rosenbrock': [-2.048, 2.048],
+		    'rastrigin': [-5.12, 5.12],
+		    'griewangk': [-600, 600]
+		}

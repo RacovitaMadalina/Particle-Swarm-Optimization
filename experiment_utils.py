@@ -6,12 +6,13 @@ from pso import *
 
 class Experiment:
     def establish_starting_population(self):
-        pso = PSO(self.fitness)
+        pso = PSO(self.fitness, self.constants)
         pso.pop_initialisation()
         return pso.population, pso.swarm
 
-    def __init__(self, function_to_be_minimized):
+    def __init__(self, function_to_be_minimized, constants):
         self.fitness = function_to_be_minimized
+        self.constants = constants
         self.fixed_population, self.initial_swarm = self.establish_starting_population()
 
     def run_pso_for_given_population(self, pso, experiment_no):
@@ -20,9 +21,13 @@ class Experiment:
 
         for current_generation_index in range(1, pso.generations_no + 1):
             pso.run_one_iteration_pso_algorithm()
-            print("Dim " + str(pso.dimensions_no) + " Experiment = " + str(experiment_no) +
-                  ' __________ Generation = ' + str(current_generation_index) +
-                  ' __________ Swarm minimum = ' + str(pso.swarm.global_minimum_found) + '\n')
+            #print("Dim " + str(pso.dimensions_no) + " Experiment = " + str(experiment_no) +
+            #      ' __________ Generation = ' + str(current_generation_index) +
+            #      ' __________ Swarm minimum = ' + str(pso.swarm.global_minimum_found) + '\n')
+
+        if experiment_no > 0:
+            print("\033[F\033[K", end = '')
+        print("Experiment_no", experiment_no, "Swarm minimum", pso.swarm.global_minimum_found)
 
         return pso.swarm.global_minimum_found
 
@@ -31,10 +36,12 @@ class Experiment:
         # will be emphasized
         mins_found_during_experiment = []
 
-        for experiment_no in range(15):
-            pso = PSO(self.fitness)
+        for experiment_no in range(30):
+            pso = PSO(self.fitness, self.constants)
             current_min = self.run_pso_for_given_population(pso, experiment_no)
             mins_found_during_experiment.append(current_min)
+
+        print("\033[F\033[K", end = '')
 
         return max(mins_found_during_experiment), min(mins_found_during_experiment), \
                np.mean(mins_found_during_experiment)

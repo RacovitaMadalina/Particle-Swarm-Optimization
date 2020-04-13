@@ -1,7 +1,5 @@
 import numpy as np
 
-from constants import *
-
 
 class Particle:
     def initialise_position(self):
@@ -32,14 +30,14 @@ class Particle:
         self.best_known_position = position
         self.eval_for_best_known_position = self.evaluate_position(self.best_known_position)
 
-    def __init__(self, fitness):
+    def __init__(self, fitness, constants):
         self.fitness_function = fitness
 
-        self.lower_definition_limit = INTERVALS_OF_DEFINITION[fitness.__name__][0]
-        self.upper_definition_limit = INTERVALS_OF_DEFINITION[fitness.__name__][1]
-        self.dimension_no = DIMENSIONS_OF_THE_FUNCTION
-        self.precision = PRECISION
-        self.max_velocity_allowed = MAX_VELOCITY_ALLOWED
+        self.lower_definition_limit = constants.INTERVALS_OF_DEFINITION[fitness.__name__][0]
+        self.upper_definition_limit = constants.INTERVALS_OF_DEFINITION[fitness.__name__][1]
+        self.dimension_no = constants.DIMENSIONS_OF_THE_FUNCTION
+        self.precision = constants.PRECISION
+        self.max_velocity_allowed = constants.MAX_VELOCITY_ALLOWED
 
         self.position = self.initialise_position()
         self.velocity = self.initialise_velocity()

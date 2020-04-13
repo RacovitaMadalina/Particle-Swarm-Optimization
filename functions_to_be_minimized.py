@@ -1,4 +1,5 @@
 import math
+import numpy as np
 
 from constants import *
 
@@ -23,10 +24,12 @@ def rosenbrock(x):
 
 
 def rastrigin(x):
-    rastrigin_value = 10 * DIMENSIONS_OF_THE_FUNCTION
-    for i in range(len(x)):
-        rastrigin_value += (x[i] ** 2 - 10 * math.cos(2 * math.pi * x[i]))
-    return rastrigin_value
+    return 10 * len(x) + sum(x * x) - 10 * sum(np.cos(2 * math.pi * x))
+    #rastrigin_value = 10 * len(x)
+    #for i in range(len(x)):
+    #    rastrigin_value += (x[i] ** 2 - 10 * math.cos(2 * math.pi * x[i]))
+    #assert abs(val2 - rastrigin_value) < 1e-5
+    #return rastrigin_value
 
 
 def griewangk(x):

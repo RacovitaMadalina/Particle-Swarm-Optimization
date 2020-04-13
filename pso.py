@@ -1,25 +1,25 @@
 import numpy as np
 
-from constants import *
 from particle import Particle
 from swarm import Swarm
 
 
 class PSO:
-    def __init__(self, function_to_be_minimized):
-        self.precision = PRECISION
-        self.inertia = INERTIA_WEIGHT
-        self.cognitive = COGNITIVE_WEIGHT
-        self.social = SOCIAL_WEIGHT
-        self.max_velocity_allowed = MAX_VELOCITY_ALLOWED
+    def __init__(self, function_to_be_minimized, constants):
+        self.constants = constants
+        self.precision = constants.PRECISION
+        self.inertia = constants.INERTIA_WEIGHT
+        self.cognitive = constants.COGNITIVE_WEIGHT
+        self.social = constants.SOCIAL_WEIGHT
+        self.max_velocity_allowed = constants.MAX_VELOCITY_ALLOWED
 
-        self.pop_size = POP_SIZE
-        self.generations_no = GENERATIONS_NO
-        self.dimensions_no = DIMENSIONS_OF_THE_FUNCTION
+        self.pop_size = constants.POP_SIZE
+        self.generations_no = constants.GENERATIONS_NO
+        self.dimensions_no = constants.DIMENSIONS_OF_THE_FUNCTION
 
         self.fitness = function_to_be_minimized
-        self.a = INTERVALS_OF_DEFINITION[self.fitness.__name__][0]
-        self.b = INTERVALS_OF_DEFINITION[self.fitness.__name__][1]
+        self.a = constants.INTERVALS_OF_DEFINITION[self.fitness.__name__][0]
+        self.b = constants.INTERVALS_OF_DEFINITION[self.fitness.__name__][1]
 
         self.population = []
         self.swarm = Swarm(self.fitness, self.precision)
@@ -31,7 +31,7 @@ class PSO:
     def pop_initialisation(self):
         # initialise the population of particles (including positions and corresponding velocities)
         for i in range(self.pop_size):
-            current_particle = Particle(self.fitness)
+            current_particle = Particle(self.fitness, self.constants)
             current_particle.update_velocity_in_respect_to_max_velocity_allowed()
             self.population.append(current_particle)
 
@@ -43,8 +43,8 @@ class PSO:
             current_particle = self.population[i]
 
             # velocity update in respect with inertia ratio, individual performance and global swarm improvement
-            random_cognitive = np.random.random(size = len(current_particle.position))
-            random_social = np.random.random(size = len(current_particle.position))
+            random_cognitive = np.random.random()
+            random_social = np.random.random()
 
             inertia_update_ratio = self.inertia * current_particle.velocity
             cognitive_update_ratio = self.cognitive * random_cognitive * (current_particle.best_known_position - current_particle.position)
