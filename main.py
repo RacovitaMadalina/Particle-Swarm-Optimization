@@ -14,10 +14,17 @@ if __name__ == '__main__':
     # visualiser = PSOVisualization(griewangk)
     # visualiser.start_pso_visualizer()
 
-    GET_WEIGHTS = False
-
     constants = Constants()
+
+    # experiment = Experiment(griewangk, constants)
+    # max_value, min_value, mean_value = experiment.run_experiment(30)
+    # print('Min = ', min_value, " Max = ", max_value, " Mean = ", mean_value)
+    # exit(0)
+
+    GET_WEIGHTS = True
+
     results = Results()
+    results.load(results_file)
 
     if GET_WEIGHTS == True:
         # Get best combination of weights
@@ -34,11 +41,11 @@ if __name__ == '__main__':
 
                     print(inertia_weight, cognitive_weight, social_weight)
                     # 30 experiments on a fixed population + statistics
-                    experiment = Experiment(rastrigin, constants)
+                    experiment = Experiment(griewangk, constants)
                     max_value, min_value, mean_value = experiment.run_experiment(30)
                     print('Min = ', min_value, " Max = ", max_value, " Mean = ", mean_value)
 
-                    results.add("rastrigin", constants, min_value, max_value, mean_value)
+                    results.add("griewangk", constants, min_value, max_value, mean_value)
     else:
         weight_combinations = [(0.5, 0.50, 4.00), (0.5, 4.00, 1.00), (0.5, 1.00, 4.00), (0.8, 1.00, 1.00)]
         

@@ -33,10 +33,8 @@ def rastrigin(x):
 
 
 def griewangk(x):
-    sum = 0
-    for i in range(len(x)):
-        sum += ((x[i] ** 2) / 4000)
+    s = sum(x * x) / 4000
     product = 1
     for i in range(len(x)):
         product = product * math.cos(x[i] / math.sqrt(i + 1))
-    return sum + product + 1
+    return s + product + 1

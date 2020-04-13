@@ -10,7 +10,7 @@ results.load(results_file)
 
 pd.set_option("display.max_rows", len(results.df))
 
-print(results.df)
+print(results.df[results.df["Function"] == "griewangk"])
 exit(0)
 
 fig = plt.figure(figsize=(15, 15))

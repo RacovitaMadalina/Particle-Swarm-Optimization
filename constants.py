@@ -1,24 +1,24 @@
 
-results_file = "ratrigin.pickle"
+results_file = "results/results.pickle"
 
 class Constants():
 	def __init__(self):
 		self.PRECISION = 9
 
 		# establish the balance between exploration and exploitation
-		self.INERTIA_WEIGHT = 0.9
+		self.INERTIA_WEIGHT = 0.5
 
 		# tendency of duplicating past self actions which were proven to be successful
-		self.COGNITIVE_WEIGHT = 4
+		self.COGNITIVE_WEIGHT = 0.5
 
 		# tendency of following collective success (i.e. success of other individuals)
-		self.SOCIAL_WEIGHT = 2.05
+		self.SOCIAL_WEIGHT = 4
 
 		# lowers the ability of exploration by reducing the velocity to a given limit value
-		self.MAX_VELOCITY_ALLOWED = 0.5
+		self.MAX_VELOCITY_ALLOWED = 12
 
-		self.POP_SIZE = 500
-		self.GENERATIONS_NO = 1000
+		self.POP_SIZE = 100
+		self.GENERATIONS_NO = 200
 		self.DIMENSIONS_OF_THE_FUNCTION = 30
 
 		self.INTERVALS_OF_DEFINITION = {
