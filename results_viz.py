@@ -17,7 +17,7 @@ def best_value_depending_on_generation(df, title, xgap, filename=None):
         x = range(0, xgap * len(y), xgap)
         plt.plot(x, y, lw=0.6)
 
-    print(len(df["Experiment_no"].unique()))
+    #print(len(df["Experiment_no"].unique()))
 
     plt.title(title)
     plt.ylabel('Minimum found')
@@ -27,9 +27,11 @@ def best_value_depending_on_generation(df, title, xgap, filename=None):
     if filename is not None:
         plt.savefig(filename)
 
-
+res = Results()
+res.load("results/results.pickle")
+"""
 rastrigin_res = Results()
-rastrigin_res.load("results/ratrigin.pickle")
+rastrigin_res.load("results/rastrigin.pickle")
 
 rosenbrock_res = Results()
 rosenbrock_res.load("results/rosenbrock.pickle")
@@ -77,10 +79,18 @@ best_value_depending_on_generation(griewangk_res.df[griewangk_res.df["Cognitive"
 best_value_depending_on_generation(griewangk_res.df[griewangk_res.df["Cognitive"] == 1],
                                    "Evolution of best values for Griewangk function", 10,
                                    "images/griew cognitive 1, pop_size 250.png")
-# exit(0)
 
+best_value_depending_on_generation(rastrigin_res.df[rastrigin_res.df["Cognitive"] == 0.5],
+                                   "Evolution of best values for Rastrigin function", 10,
+                                   "images/rastrigin cognitive 0.5, pop_size 250.png")
+best_value_depending_on_generation(rastrigin_res.df[rastrigin_res.df["Cognitive"] == 1],
+                                   "Evolution of best values for Rastrigin function", 10,
+                                   "images/rastrigin cognitive 1, pop_size 250.png")
+
+# exit(0)
+"""
 fig = plt.figure(figsize=(15, 15))
-fig = px.scatter_3d(rastrigin_res.df[rastrigin_res.df["Mean"] < 30],
+fig = px.scatter_3d(res.df[(res.df["Function"] == "rastrigin") & (res.df["Mean"] < 60)],
                     x='Inertia',
                     y='Cognitive',
                     z='Social',
@@ -89,5 +99,5 @@ fig = px.scatter_3d(rastrigin_res.df[rastrigin_res.df["Mean"] < 30],
                     size='Mean',
                     title='The effect of different configurations for inertia /'
                           ' cognitive / social parameters over the PSO results.')
-plotly.offline.plot(fig, filename='./images/Rastrigin_diff_weights.html', auto_open=False)
+plotly.offline.plot(fig, filename='./images/Rastrigin_diff_weights_mean_less_than_60.html', auto_open=False)
 # fig.show()

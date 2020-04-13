@@ -1,5 +1,5 @@
 
-results_file = "results/rosenbrock.pickle"
+results_file = "results/rastrigin.pickle"
 
 class Constants():
 	def __init__(self):
@@ -15,7 +15,7 @@ class Constants():
 		self.SOCIAL_WEIGHT = 4
 
 		# lowers the ability of exploration by reducing the velocity to a given limit value
-		self.MAX_VELOCITY_ALLOWED = 400
+		self.MAX_VELOCITY_ALLOWED = 1
 
 		self.POP_SIZE = 250
 		self.GENERATIONS_NO = 700

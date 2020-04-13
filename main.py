@@ -56,7 +56,7 @@ if __name__ == '__main__':
 
             print(inertia_weight, cognitive_weight, social_weight)
             # 30 experiments on a fixed population + statistics
-            experiment = Experiment(rosenbrock, constants)
+            experiment = Experiment(rastrigin, constants)
             max_value, min_value, mean_value = experiment.run_experiment(30, results)
             print('Min = ', min_value, " Max = ", max_value, " Mean = ", mean_value)
 
