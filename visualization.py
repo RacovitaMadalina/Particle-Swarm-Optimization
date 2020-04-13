@@ -35,8 +35,8 @@ class PSOVisualization:
         self.pso.run_one_iteration_pso_algorithm()
         return self.title, self.graph,
 
-    def __init__(self, fitness):
-        self.pso = PSO(fitness)
+    def __init__(self, fitness, constants):
+        self.pso = PSO(fitness, constants)
         self.fitness = fitness
 
         self.fig = plt.figure(figsize=(15, 15))
@@ -53,7 +53,12 @@ class PSOVisualization:
 
     def start_pso_visualizer(self):
         self.pso.pop_initialisation()
+        # Set up formatting for the movie files
+
+        Writer = animation.writers['ffmpeg']
+        writer = Writer(fps=15, metadata=dict(artist='Me'), bitrate=1800)
 
         ani = animation.FuncAnimation(self.fig, self.update_3d_visualization, self.pso.generations_no,
                                       interval=1, blit=False, repeat=True, repeat_delay=5000)
+        ani.save('./images/pso_visualization.mp4', writer=writer)
         plt.show()
