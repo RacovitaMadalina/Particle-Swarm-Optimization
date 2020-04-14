@@ -10,16 +10,16 @@ if __name__ == '__main__':
     # pso = PSO(de_jong)
     # pso.solve_pso_problem()
 
-    # with visualisation
-    # visualiser = PSOVisualization(griewangk)
-    # visualiser.start_pso_visualizer()
-
     constants = Constants()
 
-    # experiment = Experiment(griewangk, constants)
-    # max_value, min_value, mean_value = experiment.run_experiment(30)
-    # print('Min = ', min_value, " Max = ", max_value, " Mean = ", mean_value)
-    # exit(0)
+    # with visualisation
+    # visualiser = PSOVisualization(rastrigin, constants)
+    # visualiser.start_pso_visualizer()
+
+    experiment = Experiment(griewangk, constants)
+    max_value, min_value, mean_value = experiment.run_experiment(30)
+    print('Min = ', min_value, " Max = ", max_value, " Mean = ", mean_value)
+    exit(0)
 
     GET_WEIGHTS = False
 
@@ -48,7 +48,7 @@ if __name__ == '__main__':
                     results.add("griewangk", -1, constants, min_value, max_value, mean_value)
     else:
         weight_combinations = [(0.5, 0.50, 4.00), (0.5, 1.00, 4.00)]
-        
+
         for (inertia_weight, cognitive_weight, social_weight) in weight_combinations:
             constants.INERTIA_WEIGHT = inertia_weight
             constants.COGNITIVE_WEIGHT = cognitive_weight
