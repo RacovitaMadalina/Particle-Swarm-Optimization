@@ -7,6 +7,7 @@ import plotly
 from results import Results
 
 matplotlib.style.use('ggplot')
+pd.set_option("display.max_rows", 10 ** 4)
 
 
 def best_value_depending_on_generation(df, title, xgap, filename=None):
@@ -27,8 +28,30 @@ def best_value_depending_on_generation(df, title, xgap, filename=None):
     if filename is not None:
         plt.savefig(filename)
 
+
 res = Results()
 res.load("results/results.pickle")
+
+"""
+res.df.sort_values("Mean", inplace = True)
+for idx, row in res.df.iterrows():
+  if row["Function"] == "rastrigin":
+    print(" rastrigin & {} & {} & {} & {:.5f} & {:.5f} & {:.5f} \\\\".format(
+      row["Inertia"],
+      row["Cognitive"],
+      row["Social"],
+      row["Min"],
+      row["Mean"],
+      row["Max"])
+    )
+
+#for pop in [15, 50, 100]:
+#  for cognitive in [0.5, 1]:
+#    vals = res.df[(res.df["Cognitive"] == cognitive) & (res.df["Pop_size"] == pop) & (res.df["Generation_no"] == 50)]["Min"]
+#    print(cognitive, pop, vals.min(), vals.mean(), vals.max())
+print(res.df)
+exit(0)
+"""
 """
 rastrigin_res = Results()
 rastrigin_res.load("results/rastrigin.pickle")
@@ -42,7 +65,7 @@ sixhump_res.load("results/sixhump.pickle")
 griewangk_res = Results()
 griewangk_res.load("results/griewangk.pickle")
 
-pd.set_option("display.max_rows", len(rastrigin_res.df))
+
 # print(rastrigin_res.df)
 # exit(0)
 
@@ -99,5 +122,5 @@ fig = px.scatter_3d(res.df[(res.df["Function"] == "rastrigin") & (res.df["Mean"]
                     size='Mean',
                     title='The effect of different configurations for inertia /'
                           ' cognitive / social parameters over the PSO results.')
-plotly.offline.plot(fig, filename='./images/Rastrigin_diff_weights_mean_less_than_60.html', auto_open=False)
-# fig.show()
+#plotly.offline.plot(fig, filename='./images/Rastrigin_diff_weights_mean_less_than_60.html', auto_open=False)
+fig.show()

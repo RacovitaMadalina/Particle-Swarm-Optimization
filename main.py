@@ -13,12 +13,12 @@ if __name__ == '__main__':
     constants = Constants()
 
     # with visualisation
-    # visualiser = PSOVisualization(rastrigin, constants)
-    # visualiser.start_pso_visualizer()
+    visualiser = PSOVisualization(rastrigin, constants)
+    visualiser.start_pso_visualizer()
 
-    experiment = Experiment(griewangk, constants)
-    max_value, min_value, mean_value = experiment.run_experiment(30)
-    print('Min = ', min_value, " Max = ", max_value, " Mean = ", mean_value)
+    #experiment = Experiment(griewangk, constants)
+    #max_value, min_value, mean_value = experiment.run_experiment(30)
+    #print('Min = ', min_value, " Max = ", max_value, " Mean = ", mean_value)
     exit(0)
 
     GET_WEIGHTS = False
